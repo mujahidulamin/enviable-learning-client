@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
 
@@ -15,12 +16,17 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            toast.success('Successfully Logged in')
         })
         .catch(error => {
             console.error('error', error)
         })
     } 
 
+
+    const handleSubmit = () => {
+        
+    }
 
     return (
         <div className='flex justify-center items-center pt-8'>
@@ -33,6 +39,7 @@ const Register = () => {
                     noValidate=''
                     action=''
                     className='space-y-12 ng-untouched ng-pristine ng-valid'
+                    onSubmit={handleSubmit}
                 >
                     <div className='space-y-4'>
                         <div>
@@ -44,6 +51,20 @@ const Register = () => {
                                 name='name'
                                 id='name'
                                 placeholder='Enter Your Name Here'
+                                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
+                                data-temp-mail-org='0'
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='email' className='block mb-2 text-sm'>
+                                PhotoURL
+                            </label>
+                            <input
+                                type='text'
+                                name='photoURL'
+                                id='photoURL'
+                                placeholder='Enter Your photoURL required'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
                             />
@@ -59,6 +80,7 @@ const Register = () => {
                                 placeholder='Enter Your Email Here'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
+                                required
                             />
                         </div>
                         <div>
@@ -73,6 +95,7 @@ const Register = () => {
                                 id='password'
                                 placeholder='*******'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                                required
                             />
                         </div>
                     </div>

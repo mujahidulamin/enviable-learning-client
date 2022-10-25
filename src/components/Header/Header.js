@@ -3,11 +3,22 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/UserContext'
 import img from '../../image/logo.png'
+import { FaUserAlt } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const { user } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    toast.success('Successfully Logged out')
+    logOut()
+      .then(() => { })
+      .catch(error => {
+        console.error('error', error);
+      })
+  }
 
 
   return (
@@ -68,42 +79,47 @@ const Header = () => {
               Blog
             </Link>
           </li>
-          <li>
-            <Link
-              to='/login'
-              aria-label='Log In'
-              title='Log In'
-              className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-            >
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to='/register'
-              aria-label='Register'
-              title='Register'
-              className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-            >
-              Register
-            </Link>
-          </li>
+          {
+            user?.uid ?
+              <li>
+                <button onClick={handleLogout}
+                  aria-label='Logout'
+                  title='Logout'
+                  className='btn btn-sm'
+                >
+                  Logout
+                </button>
+              </li>
+              :
+              <li>
+                <Link
+                  to='/login'
+                  aria-label='Log In'
+                  title='Log In'
+                  className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                >
+                  LogIn
+                </Link>
+              </li>
 
+          }
           <li>
             <Link
               to='/register'
-              aria-label='Register'
-              title='Register'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
-              <div className="tooltip tooltip-bottom" data-tip= {user?.displayName}>
+              <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                 {
                   user?.photoURL ?
-                    <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : 'No profile pic found'
+                    <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
                 }
               </div>
             </Link>
           </li>
+
+
+
+
           <li >
             <label className="swap swap-rotate">
 

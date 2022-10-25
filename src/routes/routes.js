@@ -5,6 +5,8 @@ import ErrorPage from '../components/ErrorPage/ErrorPage'
 import Login from '../components/Login/Login'
 import Register from '../components/Register/Register'
 import Blog from '../components/Blog/Blog'
+import Courses from '../components/Courses/Courses'
+import CourseDetails from '../components/CourseDetails/CourseDetails'
 
 
 
@@ -35,7 +37,15 @@ const router = createBrowserRouter([
         path: '/blog',
         element:<Blog></Blog>
       },
-      
+      {
+        path: '/courses',
+        loader: () => fetch('http://localhost:5000/courses'),
+        element: <Courses></Courses>
+      },
+      {
+        path: '/courses-details/:id',
+        element: <CourseDetails></CourseDetails>
+      }
     ],
   },
 ])

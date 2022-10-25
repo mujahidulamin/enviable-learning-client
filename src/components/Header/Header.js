@@ -179,12 +179,8 @@ const Header = () => {
                         title='Courses'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
-                        <div className='relative py-3'>
-                          <p>Courses</p>
-                          <p className='absolute bottom-5 left-9'>
-
-                          </p>
-                        </div>
+                        
+                         Courses
                       </Link>
                     </li>
                     <li>

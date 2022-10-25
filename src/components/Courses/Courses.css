@@ -1,0 +1,11 @@
+.courses{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+
+@media screen and (min-width: 1px) and (max-width: 576px) {
+    .courses{
+        grid-template-columns: 1fr;
+}
+}

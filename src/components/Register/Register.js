@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
@@ -7,7 +7,9 @@ import { toast } from 'react-hot-toast';
 const Register = () => {
 
 
-    const {providerLogin} = useContext(AuthContext)
+    const {providerLogin, createUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+
 
     const googleProvider = new GoogleAuthProvider()
 
@@ -17,6 +19,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             toast.success('Successfully Logged in')
+            navigate('/')
         })
         .catch(error => {
             console.error('error', error)
@@ -24,12 +27,28 @@ const Register = () => {
     } 
 
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password, name, photoURL);
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            form.reset();
+            toast.success('Successfully User Created')
+        })
+        .catch(error => {
+            console.error('error', error)
+        })
     }
 
     return (
-        <div className='flex justify-center items-center pt-8'>
+        <div className='flex justify-center items-center pt-8 pb-8'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Register</h1>
@@ -53,7 +72,7 @@ const Register = () => {
                                 placeholder='Enter Your Name Here'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
-                                required
+                               
                             />
                         </div>
                         <div>

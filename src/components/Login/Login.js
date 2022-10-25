@@ -1,10 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from './../../contexts/UserContext';
+import { toast } from 'react-hot-toast';
+
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		console.log(email, password);
+		signIn(email, password)
+			.then(result => {
+				const user = result.user;
+				console.log(user);
+				form.reset();
+                toast.success('Logged in Successfully')
+			})
+			.catch(error => {
+				console.error('error', error);
+			})
+
+    }
+
     return (
 
-        <div className='flex justify-center items-center pt-8'>
+        <div className='flex justify-center items-center pt-8 pb-8'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Please Log in !</h1>
@@ -16,6 +42,7 @@ const Login = () => {
                     noValidate=''
                     action=''
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
+                    onSubmit={handleSubmit}
                 >
                     <div className='space-y-4'>
                         <div>
@@ -29,6 +56,7 @@ const Login = () => {
                                 placeholder='Enter Your Email Here'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
+                                required
                             />
                         </div>
                         <div>
@@ -43,6 +71,7 @@ const Login = () => {
                                 id='password'
                                 placeholder='*******'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
+                                required
                             />
                         </div>
                     </div>
@@ -61,10 +90,10 @@ const Login = () => {
                         Forgot password?
                     </button>
                 </div>
-                
+
                 <p className='px-6 text-sm text-center text-gray-400 mt-5'>
                     Don't have an account yet?{' '}
-                    <Link to='/register' className='hover:underline text-gray-600'> 
+                    <Link to='/register' className='hover:underline text-gray-600'>
                         Register
                     </Link>
                     .

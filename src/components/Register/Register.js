@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast';
 const Register = () => {
 
 
-    const {providerLogin, createUser} = useContext(AuthContext)
+    const { providerLogin, createUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
 
@@ -15,16 +15,16 @@ const Register = () => {
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            toast.success('Successfully Logged in')
-            navigate('/')
-        })
-        .catch(error => {
-            console.error('error', error)
-        })
-    } 
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Successfully Logged in')
+                navigate('/')
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
+    }
 
 
     const handleSubmit = (event) => {
@@ -36,15 +36,15 @@ const Register = () => {
         const password = form.password.value;
         console.log(email, password, name, photoURL);
         createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            form.reset();
-            toast.success('Successfully User Created')
-        })
-        .catch(error => {
-            console.error('error', error)
-        })
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                toast.success('Successfully User Created')
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
     }
 
     return (
@@ -72,7 +72,7 @@ const Register = () => {
                                 placeholder='Enter Your Name Here'
                                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:border-gray-900 bg-gray-200 text-gray-900'
                                 data-temp-mail-org='0'
-                               
+
                             />
                         </div>
                         <div>

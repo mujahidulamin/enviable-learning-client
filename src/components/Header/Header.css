@@ -1,0 +1,10 @@
+.img{
+    width: 30px;
+    height: 30px;
+}
+.active{
+    color: rgb(165 243 252);
+}
+a:hover{
+    color: rgb(165 243 252);
+}

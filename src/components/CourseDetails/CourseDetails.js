@@ -38,7 +38,7 @@ const CourseDetails = () => {
                     <p className='text-2xl mt-5 mb-2'>Instructor</p>
                     <div className='flex justify-between items-center'>
                         <div>
-                            <div className='border flex bg-slate-400 w-48'>
+                            <div className='border flex bg-stone-200 w-48'>
                                 <img className='h-12 w-12 rounded-full' src={instructor_photo} alt="" />
                                 <span className='ml-2 mt-3 font-bold'>{instructor_name}</span>
                             </div>

@@ -1,62 +1,25 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
-import app from '../firebase/firebase.config';
-import { GoogleAuthProvider } from "firebase/auth";
+import React from 'react';
+import { createContext } from 'react';
+import { getAuth, signInWithPopup } from 'firebase/auth';
+import app from './../firebase/firebase.config';
+
+
 
 export const AuthContext = createContext()
-const auth = getAuth(app);
-
-const googleProvider = new GoogleAuthProvider();
-
-const UserContext = ({ children }) => {
-    const [user, setUser] = useState({})
-    const [loading, setLoading] = useState(true)
-    
+const auth = getAuth(app)
 
 
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+const UserContext = ({children}) => {
 
-    const signIn = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+    const user = {displayName: 'batash ali'}
 
-    
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
-            setLoading(false)
-            console.log(currentUser);
-        })
-        return () => {
-            unsubscribe();
-        }
-    }, [])
-
-    const logOut = () => {
-        return signOut(auth)
-    }
-
-    const signInWithGoogle = () => {
-        setLoading(true)
-        return signInWithPopup(auth, googleProvider)
-    }
-
-    const resetPassword = (email) => {
-      return  sendPasswordResetEmail(auth, email)
-    }
-
-    const userProfileName = (name) => {
-        return updateProfile(auth.currentUser, {
-            displayName: name
-        })
+    const providerLogin = (provider) => {
+        return signInWithPopup(auth, provider);
     }
 
 
-    const authInfo = { user, createUser, signIn, logOut, signInWithGoogle, loading, resetPassword, userProfileName }
+
+    const authInfo = {user, providerLogin}
 
     return (
         <AuthContext.Provider value={authInfo}>

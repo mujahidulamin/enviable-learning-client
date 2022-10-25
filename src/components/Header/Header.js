@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/UserContext'
 import img from '../../image/logo.png'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const {user} = useContext(AuthContext)
+
+
   return (
     <div className='bg-sky-50 px-4 py-3 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
       <div className='relative flex items-center justify-between'>
@@ -83,6 +89,18 @@ const Header = () => {
             </Link>
           </li>
 
+          <li>
+            <Link
+              to='/register'
+              aria-label='Register'
+              title='Register'
+              className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+            >
+              {
+                user?.displayName
+              }
+            </Link>
+          </li>
 
           <li >
             <label className="swap swap-rotate">

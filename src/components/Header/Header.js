@@ -7,7 +7,7 @@ import img from '../../image/logo.png'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
 
   return (
@@ -96,12 +96,14 @@ const Header = () => {
               title='Register'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
-              {
-                user?.displayName
-              }
+              <div className="tooltip tooltip-bottom" data-tip= {user?.displayName}>
+                {
+                  user?.photoURL ?
+                    <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : 'No profile pic found'
+                }
+              </div>
             </Link>
           </li>
-
           <li >
             <label className="swap swap-rotate">
 
@@ -196,8 +198,8 @@ const Header = () => {
                         title='Courses'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
-                        
-                         Courses
+
+                        Courses
                       </Link>
                     </li>
                     <li>

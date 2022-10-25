@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './../../contexts/UserContext';
 import { toast } from 'react-hot-toast';
@@ -8,23 +8,32 @@ import { toast } from 'react-hot-toast';
 const Login = () => {
 
     const { signIn } = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+     const location = useLocation()
+
+     const from = location.state?.from?.pathname || '/'
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-		const email = form.email.value;
-		const password = form.password.value;
-		console.log(email, password);
-		signIn(email, password)
-			.then(result => {
-				const user = result.user;
-				console.log(user);
-				form.reset();
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('')
                 toast.success('Logged in Successfully')
-			})
-			.catch(error => {
-				console.error('error', error);
-			})
+                navigate(from, {replace: true})
+            })
+            .catch(error => {
+                console.error('error', error);
+                setError(error.message)
+            })
 
     }
 
@@ -75,6 +84,11 @@ const Login = () => {
                             />
                         </div>
                     </div>
+
+                        {
+                            <span className='text-red-600'>{error}</span>
+                        }
+
 
                     <div>
                         <button

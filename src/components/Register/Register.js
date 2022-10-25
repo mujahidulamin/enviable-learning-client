@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 
 const Register = () => {
 
-
+    const [error, setError] = useState('')
     const { providerLogin, createUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -17,7 +17,6 @@ const Register = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 toast.success('Successfully Logged in')
                 navigate('/')
             })
@@ -39,11 +38,14 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('')
                 form.reset();
                 toast.success('Successfully User Created')
             })
             .catch(error => {
-                console.error('error', error)
+                console.error('error', error);
+                setError(error.message)
+
             })
     }
 
@@ -117,6 +119,9 @@ const Register = () => {
                                 required
                             />
                         </div>
+                        {
+                            <span className='text-red-600'>{error}</span>
+                        }
                     </div>
                     <div className='space-y-2'>
                         <div>

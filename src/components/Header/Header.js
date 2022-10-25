@@ -205,9 +205,9 @@ const Header = () => {
                     </li>
                     <li>
                       <Link
-                        to='/blog'
-                        aria-label='Blog'
-                        title='Blog'
+                        to='/login'
+                        aria-label='login'
+                        title='login'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
                         Login

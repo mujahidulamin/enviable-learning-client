@@ -68,7 +68,7 @@ const Header = () => {
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               <div className='relative py-3'>
-                <p>Faq</p>
+                <p>FAQ</p>
                 <p className='absolute bottom-5 left-9'></p>
               </div>
             </NavLink>
@@ -229,7 +229,7 @@ const Header = () => {
                         title='Faq'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
-                        Faq
+                        FAQ
                       </NavLink>
                     </li>
                     <li>

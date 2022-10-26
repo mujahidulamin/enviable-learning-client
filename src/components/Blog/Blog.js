@@ -1,78 +1,63 @@
 import React from 'react';
-import { Fragment, useState } from "react";
-import {
-    Accordion,
-    AccordionHeader,
-    AccordionBody,
-} from "@material-tailwind/react";
-import './Blog.css'
-
-function Icon({ id, open }) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`${id === open ? "rotate-180" : ""
-                } h-5 w-5 transition-transform`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-    );
-}
-
 
 const Blog = () => {
-
-    const [open, setOpen] = useState(0);
-
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    };
-
     return (
+        <div>
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mx-8 my-8">
+                <div className="collapse-title text-xl font-medium">
+                    What is cors?
+                </div>
+                <div className="collapse-content">
+                    <p>CORS stands for Cross-Origin Resource Sharing. It allows us to relax the security applied to an API. This is done by bypassing the Access-Control-Allow-Origin headers, which specify which origins can access the API. In other words, CORS is a browser security feature that restricts cross-origin HTTP requests with other servers and specifies which domains access your resources.</p>
+                </div>
+            </div>
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mx-8 my-8">
+                <div className="collapse-title text-xl font-medium">
+                    Why are you using firebase? What other options do you have to implement authentication?
+                </div>
+                <div className="collapse-content">
+                    <p>Firebase, Backend-as-a-Service (BaaS), is a platform by Google that provides functionalities and helps with the backend development of Android, iOS, or web and even some products. But at present, as a web develop learner I am using firebase mainly for my website authentication. Besides that, I'm also using the deploy service from google firebase.
 
-        <div className='bg-stone-200'>
-            <div className='mx-12 h-full my-16'>
-                <Fragment>
-                    <Accordion className='border'  open={open === 1} icon={<Icon id={1} open={open} />}>
-                        <AccordionHeader className='text-4xl mb-2' onClick={() => handleOpen(1)}>
-                      
-                        </AccordionHeader>
-                        <AccordionBody>
-                            Authentication confirms that users are who they say they are. Authorization gives those users permission to access a resource.
+                        There are so many options to implement authentication. I'm mentioning some popular authentication system that developers are using all over the world.
 
-                            In authentication process, the identity of users are checked for providing the access to the system. In this process, users or persons are verified. It is done before the authorization process. It needs usually user’s login details. Authentication determines whether the person is user or not.
+                        1. Auth0 is the go-to user authentication platform and a Firebase alternative for good reasons.
 
-                            While in authorization process, person’s or user’s authorities are checked for accessing the resources. In this process, users or persons are validated. This process is done after the authentication process. It needs user’s privilege or security levels. It determines What permission do user have?
-                        </AccordionBody>
-                    </Accordion>
-                    <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-                        <AccordionHeader className='text-3xl mb-2' onClick={() => handleOpen(2)}>
-                        Why are you using firebase? What other options do you have to implement authentication?
-                        </AccordionHeader>
-                        <AccordionBody>
-                            We're not always in the position that we want to be at. We're
-                            constantly growing. We're constantly making mistakes. We're constantly
-                            trying to express ourselves and actualize our dreams.
-                        </AccordionBody>
-                    </Accordion>
-                    <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-                        <AccordionHeader onClick={() => handleOpen(3)}>
-                            What can I do with Material Tailwind?
-                        </AccordionHeader>
-                        <AccordionBody>
-                            We're not always in the position that we want to be at. We're
-                            constantly growing. We're constantly making mistakes. We're constantly
-                            trying to express ourselves and actualize our dreams.
-                        </AccordionBody>
-                    </Accordion>
-                </Fragment>
+                        2. Okta is a flagbearer of password-less security. However, you can ask for the strongest passwords with Okta as well.
+
+                        3. STYTCH is a staunch supporter of password-less authentication. It is focused on improving user experience and cutting developer headaches by doing just that.
+
+                        4. Ory brings complete user experience control with its headless user authentication management.
+
+                        5. Keycloak is an open-source user identity and access management platform.
+
+                        6. PingIdentity is shaped as an intelligent central authentication module for all your cloud, in-house, and SaaS implementations.</p>
+                </div>
+            </div>
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mx-8 my-8">
+                <div className="collapse-title text-xl font-medium">
+                    How does the private route work?
+                </div>
+                <div className="collapse-content">
+                    <p>The private route component is similar to the public route, the only change is that redirect URL and authenticate condition. If the user is not authenticated he will be redirected to the login page and the user can only access the authenticated routes If he is authenticated.</p>
+                </div>
+            </div>
+
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mx-8 my-8">
+                <div className="collapse-title text-xl font-medium">
+                    What is Node? How does Node work?
+                </div>
+                <div className="collapse-content">
+                    <p>As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following "hello world" example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep. Node.js accepts the request from the clients and sends the response, while working with the request node.js handles them with a single thread. To operate I/O operations or requests node.js use the concept of threads. Thread is a sequence of instructions that the server needs to perform. It runs parallel on the server to provide the information to multiple clients. Node.js is an event loop single-threaded language. It can handle concurrent requests with a single thread without blocking it for one request.
+
+                        Node.js basically works on two concept
+
+                        1. Asynchronous
+                        2. Non-blocking I/O
+
+                    </p>
+                </div>
             </div>
         </div>
-
     );
 };
 

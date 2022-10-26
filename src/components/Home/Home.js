@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import SingleCourse from '../SingleCourse/SingleCourse';
 import './Home.css'
 

@@ -85,7 +85,7 @@ export const Footer = () => {
       </div>
       <div className="pt-5 pb-10 border-t lg:flex-row">
         <p className="text-sm text-gray-600 text-center">
-          © Copyright 2022 <span className="text-cyan-400 font-bold">Developer Kwiz</span> All rights reserved.
+          © Copyright 2022 - All rights reserved by <span className="text-warning font-bold">Enviable Learning</span>
         </p>
       </div>
     </div>

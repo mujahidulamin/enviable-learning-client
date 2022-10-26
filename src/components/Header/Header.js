@@ -22,7 +22,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-sky-50 px-4 py-3 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8'>
+    <div className='bg-sky-50 px-4 py-3 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 sticky top-0 z-50'>
       <div className='relative flex items-center justify-between'>
         <Link
           to='/'
@@ -238,14 +238,41 @@ const Header = () => {
                         Blog
                       </Link>
                     </li>
+                    {
+                      user?.uid ?
+                        <li>
+                          <button onClick={handleLogout}
+                            aria-label='Logout'
+                            title='Logout'
+                            className='btn btn-sm'
+                          >
+                            Logout
+                          </button>
+                        </li>
+                        :
+                        <li>
+                          <Link
+                            to='/login'
+                            aria-label='Log In'
+                            title='Log In'
+                            className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                          >
+                            LogIn
+                          </Link>
+                        </li>
+
+                    }
                     <li>
                       <Link
-                        to='/login'
-                        aria-label='login'
-                        title='login'
+                        to='/register'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
-                        Login
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                          {
+                            user?.photoURL ?
+                              <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
+                          }
+                        </div>
                       </Link>
                     </li>
                     <li >

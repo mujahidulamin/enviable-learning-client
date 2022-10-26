@@ -21,10 +21,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        loader: () => fetch('https://enviable-learning-server.vercel.app/courses'),
         element: <Home></Home>
       },
       {
         path: '/home',
+        loader: () => fetch('https://enviable-learning-server.vercel.app/courses'),
         element: <Home></Home>
       },
       {
@@ -37,22 +39,22 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element:<Blog></Blog>
+        element: <Blog></Blog>
       },
       {
         path: '/courses',
-        loader: () => fetch('http://localhost:5000/courses'),
+        loader: () => fetch('https://enviable-learning-server.vercel.app/courses'),
         element: <Courses></Courses>
       },
       {
         path: '/courses-details/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/courseDetails/${params.id}`),
+        loader: ({ params }) => fetch(`https://enviable-learning-server.vercel.app/courseDetails/${params.id}`),
         element: <CourseDetails></CourseDetails>
 
       },
       {
         path: '/checkout/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`),
+        loader: ({ params }) => fetch(`https://enviable-learning-server.vercel.app/checkout/${params.id}`),
         element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
       }
     ],

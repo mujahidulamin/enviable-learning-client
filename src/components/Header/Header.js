@@ -53,8 +53,8 @@ const Header = () => {
           <li>
             <NavLink
               to='/courses'
-              aria-label='courses'
-              title='courses'
+              aria-label='Courses'
+              title='Courses'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               Courses
@@ -76,8 +76,8 @@ const Header = () => {
           <li>
             <NavLink
               to='/blog'
-              aria-label='blog'
-              title='blog'
+              aria-label='Blog'
+              title='Blog'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               Blog
@@ -115,7 +115,10 @@ const Header = () => {
               <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                 {
                   user?.photoURL ?
-                    <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
+                    <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> :
+                    <div className="tooltip tooltip-bottom" data-tip="Profile">
+                      <FaUserAlt></FaUserAlt>
+                    </div>
                 }
               </div>
             </NavLink>

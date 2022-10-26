@@ -3,6 +3,7 @@ import React from 'react';
 const Faq = () => {
     return (
         <div>
+            <p className='text-center text-4xl my-6 font-bold'>Frequently Asked Question</p>
             <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box mx-8 my-6">
                 <div className="collapse-title text-xl font-medium">
                     How long does each course take?

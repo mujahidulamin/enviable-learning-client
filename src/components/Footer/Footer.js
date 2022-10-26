@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import img from '../../image/logo.png'
 
 export const Footer = () => {
   return (
@@ -8,11 +8,11 @@ export const Footer = () => {
         <div className="sm:col-span-2">
           <Link
             to='/'
-            aria-label='Smart Home'
-            title='Smart Home'
+            aria-label='Enviable Learning'
+            title='Enviable Learning'
             className='inline-flex items-center'
           >
-            <img className='img' src="" alt="" />
+            <img className='img' src= {img} alt="" />
             <span className='ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase'>
             Enviable Learning
             </span>

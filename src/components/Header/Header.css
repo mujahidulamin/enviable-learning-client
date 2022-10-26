@@ -1,10 +1,12 @@
-.img{
+.img {
     width: 30px;
     height: 30px;
 }
-.active{
+
+.active {
     color: rgb(231, 92, 92);
 }
-a:hover{
-    color: rgb(189, 87, 87);
+
+.header a:hover {
+    color: rgb(231, 92, 92);
 }

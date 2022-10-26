@@ -24,7 +24,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-sky-50 px-4 py-3 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 sticky top-0 z-50'>
+    <div className='bg-sky-50 px-4 py-3 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 sticky top-0 z-50 header'>
       <div className='relative flex items-center justify-between'>
         <Link
           to='/'

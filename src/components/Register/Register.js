@@ -1,28 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 
 const Register = () => {
 
     const [error, setError] = useState('')
-    const { providerLogin, createUser } = useContext(AuthContext)
+    const { providerLogin, createUser, updateUserProfile, githubProviderLogin } = useContext(AuthContext)
     const navigate = useNavigate()
 
 
     const googleProvider = new GoogleAuthProvider()
+    const gitHubProvider = new GithubAuthProvider()
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                console.log(user);
                 toast.success('Successfully Logged in')
                 navigate('/')
             })
             .catch(error => {
                 console.error('error', error)
             })
+    }
+
+
+    const handleGithubSignIn = () => {
+        githubProviderLogin(gitHubProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            toast.success('Successfully Logged in')
+            navigate('/')
+        })
+        .catch(error => {
+            console.error('error', error)
+        })
     }
 
 
@@ -41,13 +57,26 @@ const Register = () => {
                 setError('')
                 form.reset();
                 toast.success('Successfully User Created')
+                handleUpdateUserProfile(name, photoURL)
             })
             .catch(error => {
                 console.error('error', error);
                 setError(error.message)
-
             })
     }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+        .then( () => {})
+        .catch(error => {
+            console.error('error', error);
+        })
+    }
+
 
     return (
         <div className='flex justify-center items-center pt-8 pb-8'>
@@ -126,10 +155,11 @@ const Register = () => {
                     <div className='space-y-2'>
                         <div>
                             <button
+                                
                                 type='submit'
                                 className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                             >
-                                Sign Up
+                                Register
                             </button>
                         </div>
                     </div>
@@ -151,7 +181,7 @@ const Register = () => {
                             <path d='M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z'></path>
                         </svg>
                     </button>
-                    <button aria-label='Log in with GitHub' className='p-3 rounded-sm'>
+                    <button onClick={handleGithubSignIn} aria-label='Log in with GitHub' className='p-3 rounded-sm'>
                         <svg
                             xmlns='http://www.w3.org/2000/svg'
                             viewBox='0 0 32 32'

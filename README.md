@@ -1,6 +1,6 @@
-# Project Name: ENVIABLE LEARNING
+# Project Name: Enviable Learning
 
-# Live Site Link of this project: [ENVIABLE LEARNING](https://enviable-learning.web.app/)
+## Live Site Link of this project: [Enviable Learning](https://enviable-learning.web.app/)
 
 ## Some Features and functionality:
 * This website has authentication system.

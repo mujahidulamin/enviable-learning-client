@@ -5,14 +5,16 @@ import { AuthContext } from './../../contexts/UserContext';
 import { toast } from 'react-hot-toast';
 
 
+
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext)
+    const { signIn, forgetPassword } = useContext(AuthContext)
     const [error, setError] = useState('')
+    const [userEmail, setUserEmail] = useState('')
     const navigate = useNavigate()
-     const location = useLocation()
+    const location = useLocation()
 
-     const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/'
 
 
     const handleSubmit = (event) => {
@@ -28,7 +30,7 @@ const Login = () => {
                 form.reset();
                 setError('')
                 toast.success('Logged in Successfully')
-                navigate(from, {replace: true})
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.error('error', error);
@@ -36,6 +38,30 @@ const Login = () => {
             })
 
     }
+
+    const handleEmailBlur = (event) => {
+        const email = event.target.value;
+        setUserEmail(email);
+        console.log(email);
+    }
+
+
+    const handleForgetPassword = () => {
+        if(!userEmail){
+            toast.error('Please Enter Your Email Address')
+            return;
+        }
+        forgetPassword(userEmail)
+        .then( () => {
+            toast.success('Password Reset Sent to Your Email Address')
+        })
+        .catch(error => {
+            console.error('error', error);
+        })
+    }
+
+
+
 
     return (
 
@@ -59,6 +85,7 @@ const Login = () => {
                                 Email address
                             </label>
                             <input
+                                onBlur={handleEmailBlur}
                                 type='email'
                                 name='email'
                                 id='email'
@@ -85,9 +112,9 @@ const Login = () => {
                         </div>
                     </div>
 
-                        {
-                            <span className='text-red-600'>{error}</span>
-                        }
+                    {
+                        <span className='text-red-600'>{error}</span>
+                    }
 
 
                     <div>
@@ -100,7 +127,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className='space-y-1'>
-                    <button className='text-xs hover:underline text-gray-400'>
+                    <button onClick={handleForgetPassword} className='text-xs hover:underline text-gray-400'>
                         Forgot password?
                     </button>
                 </div>

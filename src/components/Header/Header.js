@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../../contexts/UserContext'
 import img from '../../image/logo.png'
 import { FaUserAlt } from "react-icons/fa";
 import { toast } from 'react-hot-toast';
+import './Header.css'
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -36,28 +38,30 @@ const Header = () => {
           </span>
         </Link>
         <ul className='flex items-center hidden space-x-8 lg:flex'>
-          <li>
-            <Link
+          <li className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'>
+            <NavLink
               to='/home'
               aria-label='Home'
               title='Home'
-              className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+              className={({ isActive }) =>
+                isActive ? 'active' : undefined
+              }
             >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to='/courses'
               aria-label='courses'
               title='courses'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               Courses
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to='/faq'
               aria-label='Faq'
               title='Faq'
@@ -67,17 +71,17 @@ const Header = () => {
                 <p>Faq</p>
                 <p className='absolute bottom-5 left-9'></p>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to='/blog'
               aria-label='blog'
               title='blog'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               Blog
-            </Link>
+            </NavLink>
           </li>
           {
             user?.uid ?
@@ -92,20 +96,20 @@ const Header = () => {
               </li>
               :
               <li>
-                <Link
+                <NavLink
                   to='/login'
                   aria-label='Log In'
                   title='Log In'
                   className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                 >
                   LogIn
-                </Link>
+                </NavLink>
               </li>
 
           }
           <li>
-            <Link
-              to='/register'
+            <NavLink
+              to='/profile'
               className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
             >
               <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
@@ -114,7 +118,7 @@ const Header = () => {
                     <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
                 }
               </div>
-            </Link>
+            </NavLink>
           </li>
 
 
@@ -198,17 +202,17 @@ const Header = () => {
                 <nav>
                   <ul className='space-y-4'>
                     <li>
-                      <Link
-                        to='/'
+                      <NavLink
+                        to='/home'
                         aria-label='Home'
                         title='Home'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
                         Home
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link
+                      <NavLink
                         to='/courses'
                         aria-label='Courses'
                         title='Courses'
@@ -216,27 +220,27 @@ const Header = () => {
                       >
 
                         Courses
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link
+                      <NavLink
                         to='/faq'
                         aria-label='Faq'
                         title='Faq'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
                         Faq
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link
+                      <NavLink
                         to='/blog'
                         aria-label='Blog'
                         title='Blog'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
                         Blog
-                      </Link>
+                      </NavLink>
                     </li>
                     {
                       user?.uid ?
@@ -251,20 +255,20 @@ const Header = () => {
                         </li>
                         :
                         <li>
-                          <Link
+                          <NavLink
                             to='/login'
                             aria-label='Log In'
                             title='Log In'
                             className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                           >
                             LogIn
-                          </Link>
+                          </NavLink>
                         </li>
 
                     }
                     <li>
-                      <Link
-                        to='/register'
+                      <NavLink
+                        to='/profile'
                         className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                       >
                         <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
@@ -273,7 +277,7 @@ const Header = () => {
                               <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
                           }
                         </div>
-                      </Link>
+                      </NavLink>
                     </li>
                     <li >
                       <label className="swap swap-rotate">

@@ -10,6 +10,7 @@ import CourseDetails from '../components/CourseDetails/CourseDetails'
 import CheckOut from '../components/CheckOut/CheckOut'
 import PrivateRoutes from './PrivateRoutes'
 import Faq from '../components/Faq/Faq'
+import Profile from '../components/Profile/Profile'
 
 
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blog></Blog>
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
       },
       {
         path: '/courses',

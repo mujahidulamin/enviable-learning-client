@@ -277,7 +277,10 @@ const Header = () => {
                         <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                           {
                             user?.photoURL ?
-                              <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> : <FaUserAlt></FaUserAlt>
+                              <img className='rounded-full' style={{ height: '40px' }} src={user.photoURL} alt="" /> :
+                              <div className="tooltip tooltip-bottom" data-tip="Profile">
+                                <FaUserAlt></FaUserAlt>
+                              </div>
                           }
                         </div>
                       </NavLink>

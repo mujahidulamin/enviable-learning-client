@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import Pdf from "react-to-pdf";
+import  Pdf  from "react-to-pdf";
 import { FaFilePdf } from 'react-icons/fa';
+
+
+
+
 
 const ref = React.createRef();
 
-
+const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [5, 11]
+};
 
 const CourseDetails = () => {
 
@@ -19,9 +27,9 @@ const CourseDetails = () => {
 
     return (
         <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20'>
-            <div >
+            <div  ref={ref}>
                 <div className='bg-gray-100 p-6 rounded shadow-lg'>
-                    <h2 className='text-3xl font-bold text-center mb-5'>{course_title} <Pdf targetRef={ref} filename="description.pdf">
+                    <h2 className='text-3xl font-bold text-center mb-5'>{course_title} <Pdf targetRef={ref} filename="description.pdf" options={options} x={.5} y={0} scale={0.8}>
                         {({ toPdf }) => <button onClick={toPdf}><FaFilePdf></FaFilePdf></button>}
                     </Pdf></h2>
 
@@ -30,7 +38,7 @@ const CourseDetails = () => {
                         src={image}
                         alt=''
                     />
-                    <div ref={ref} className='text-justify'>
+                    <div className='text-justify'>
                         <span className='font-bold '>Description: </span>
                         {description}
                     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import  Pdf  from "react-to-pdf";
 import { FaFilePdf } from 'react-icons/fa';
-
+import './CourseDetails.css'
 
 
 
@@ -44,16 +44,16 @@ const CourseDetails = () => {
                     </div>
 
                     <p className='text-2xl mt-5 mb-2'>Instructor</p>
-                    <div className='flex justify-between items-center'>
+                    <div className='lg:flex lg:justify-between lg:items-center'>
                         <div>
-                            <div className='border flex bg-stone-200 w-48'>
+                            <div className='lg:border flex lg:bg-stone-200 w-48'>
                                 <img className='h-12 w-12 rounded-full' src={instructor_photo} alt="" />
                                 <span className='ml-2 mt-3 font-bold'>{instructor_name}</span>
                             </div>
                         </div>
 
-                        <div>
-                            <p><span className='font-bold'>Price: </span> {price} Taka</p>
+                        <div className='price'>
+                            <p><span className='font-bold '>Price: </span> {price} Taka</p>
                         </div>
                     </div>
 

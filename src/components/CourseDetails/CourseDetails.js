@@ -22,7 +22,7 @@ const CourseDetails = () => {
     const courseDetails = useLoaderData()
     console.log(courseDetails);
 
-    const {id, course_title, image, instructor_name, price, description, instructor_photo } = courseDetails
+    const {course_title, image, instructor_name, price, description, instructor_photo } = courseDetails
 
 
     return (
@@ -57,7 +57,7 @@ const CourseDetails = () => {
                         </div>
                     </div>
 
-                    <Link to={`/checkout/${id}`}>
+                    <Link to={`/checkout/${course_title}`}>
                         <button className='bg-amber-300 p-3 rounded-xl flex m-auto mt-6'><span className='font-bold'>Get Premium Access</span></button>
                     </Link>
 

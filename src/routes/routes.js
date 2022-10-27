@@ -63,8 +63,8 @@ const router = createBrowserRouter([
 
       },
       {
-        path: '/checkout/:id',
-        loader: ({ params }) => fetch(`https://enviable-learning-server.vercel.app/checkout/${params.id}`),
+        path: '/checkout/:name',
+        loader: ({ params }) => fetch(`https://enviable-learning-server.vercel.app/checkout/${params.name}`),
         element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
       }
     ],

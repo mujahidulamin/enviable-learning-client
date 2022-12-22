@@ -6,7 +6,9 @@ const Course = ({ course }) => {
 
     return (
         <Link to={`/courses-details/${id}`}>
-            <div className='bg-gray-100 p-6 rounded shadow-lg'>
+            <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className='bg-gray-100 p-6 rounded shadow-lg'>
                 <img
                     className='object-cover w-full mb-6 rounded shadow-lg xl:h-80'
                     src={image}

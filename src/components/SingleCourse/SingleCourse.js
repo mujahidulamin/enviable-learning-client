@@ -3,7 +3,9 @@ import React from 'react';
 const SingleCourse = ({ singleCourse }) => {
     const {course_title, price, image } = singleCourse;
     return (
-        <div>
+        <div data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000">
             <div className='bg-gray-100 p-6 rounded shadow-lg'>
                 <img
                     className='object-cover w-full mb-6 rounded shadow-lg xl:h-80'

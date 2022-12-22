@@ -2,6 +2,7 @@ import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import SingleCourse from '../SingleCourse/SingleCourse';
 import './Home.css'
+import Typewriter from 'typewriter-effect';
 
 const Home = () => {
     const navigate = useNavigate()
@@ -12,7 +13,18 @@ const Home = () => {
     return (
         <div>
             <div className='bg'>
-                <h2 className='text-4xl text-center font-bold text-white py-12'>Welcome to Enviable Learning</h2>
+                <h2 className='text-4xl text-center font-bold text-white py-12'>
+                <Typewriter
+                            options={{
+                                strings: ['Welcome to Enviable Learning'],
+                                autoStart: true,
+                                loop: true,
+                            }}
+                            
+                        />
+                    
+                    
+                    </h2>
             </div>
             <h2 className='text-center font-bold text-4xl mt-12'>Our Courses</h2>
             <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20'>

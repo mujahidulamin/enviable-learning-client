@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './../../contexts/UserContext';
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
-
+import ClimbingBoxLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
 
@@ -92,10 +92,32 @@ const Login = () => {
             })
     }
 
+    const [loading, setLoading] = useState()
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 800)
+    }, [])
+
+
+
+
     return (
 
         <div className='flex justify-center items-center pt-8 pb-8'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+
+
+        {
+            loading ? 
+
+            <ClimbingBoxLoader
+            color={'#32A8B3'}
+            loading={loading}
+            size={50}
+        />
+        :
+<div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Please Log in !</h1>
                     <p className='text-sm text-gray-400'>
@@ -197,6 +219,10 @@ const Login = () => {
                     .
                 </p>
             </div>
+        }
+
+
+            
         </div>
     );
 };

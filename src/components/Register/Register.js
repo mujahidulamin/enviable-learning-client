@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
-
+import ClimbingBoxLoader from "react-spinners/ClipLoader";
 import { toast } from 'react-hot-toast';
 
 const Register = () => {
 
     const [error, setError] = useState('')
     const { createUser, updateUserProfile, } = useContext(AuthContext)
-    
+
     const navigate = useNavigate()
 
     const handleSubmit = (event) => {
@@ -42,16 +42,34 @@ const Register = () => {
             photoURL: photoURL
         }
         updateUserProfile(profile)
-        .then( () => {})
-        .catch(error => {
-            console.error('error', error);
-        })
+            .then(() => { })
+            .catch(error => {
+                console.error('error', error);
+            })
     }
+
+    const [loading, setLoading] = useState()
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 800)
+    }, [])
+
 
 
     return (
         <div className='flex justify-center items-center pt-8 pb-8'>
-            <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+
+            {
+                loading ?
+                    <ClimbingBoxLoader
+                        color={'#32A8B3'}
+                        loading={loading}
+                        size={50}
+                    />
+                    :
+<div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
                 <div className='mb-8 text-center'>
                     <h1 className='my-3 text-4xl font-bold'>Register</h1>
                     <p className='text-sm text-gray-400'>Create a new account</p>
@@ -126,7 +144,7 @@ const Register = () => {
                     <div className='space-y-2'>
                         <div>
                             <button
-                                
+
                                 type='submit'
                                 className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                             >
@@ -135,7 +153,7 @@ const Register = () => {
                         </div>
                     </div>
                 </form>
-                
+
                 <p className='px-6 text-sm text-center text-gray-400 mt-4'>
                     Already have an account yet?{' '}
                     <Link to={'/login'} className='hover:underline text-gray-600'>
@@ -144,6 +162,12 @@ const Register = () => {
                     .
                 </p>
             </div>
+            }
+
+
+
+
+            
         </div>
     );
 };
